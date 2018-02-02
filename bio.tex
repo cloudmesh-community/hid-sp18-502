@@ -1,0 +1,57 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\title{Per-chapter bibliographies with BibLaTeX}
+
+\usepackage[a4paper]{geometry}
+
+\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex}
+\addbibresource{sample.bib}
+
+\begin{document}
+
+\frontmatter
+
+\chapter*{\subsection{Alshi, Ankita}}
+Residential Student
+Ankita Alshi is first year Computer Science Masters student. She lives in Bloomington Indiana. She has done her undergraduate in Information Technology from University of Mumbai in India. Before joining Indiana University she was working at JP Morgan as Associate Software Engineer for 3 years. She wants to learn Big data systems and develop some hands on experience on it.  \texttt{}
+
+
+\tableofcontents
+
+\mainmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{First Chapter}
+
+\begin{refsection}
+\section{Section Heading}
+Here's a citation! \citep{latex:companion}
+
+\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Second Chapter}
+
+\begin{refsection}
+\section{Section Heading}
+Here's another citation! \citep{lshort}
+
+\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+
+
+\backmatter
+
+%% A list of publications can be created using this approach
+\begin{refsection}
+\nocite{lim:etal:kdtei:2016,markdown:overleaf}   % .bib keys of your own publications
+
+\printbibliography[heading=bibintoc,title={List of Publications}]
+\end{refsection}
+
+\end{document}
