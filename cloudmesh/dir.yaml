@@ -1,0 +1,81 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: "ListFiles"
+  description: "A simple service to list all the files under given directory"
+  termOfService: "http://swagger.io/terms/"
+  contact:
+    name: "Cloudmesh REST Service"
+  license:
+    name: "Apache"
+host: "localhost:8080"
+basePath: "/api"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /dir:
+    get:
+      description: "Returns list of files under root directory"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "CPU info"
+          schema:
+            $ref: "#/definitions/LOF"
+  /dir/{id}:
+    get:
+      description: "Returns list of files under given directory"
+      operationId: getFileById
+      parameters:
+        - name: id
+          in: path
+          description: ID of directory to fetch
+          required: true
+          type: string
+      produces:
+        - "application/json"
+      responses: 
+        "200":
+          description: "The files under given directory"
+          schema:
+            $ref: "#/definitions/LOF"
+      default:
+        description: unexpected error
+        schema:
+          $ref: '#/definition/Error'
+definitions:
+  LOF:
+    type: "object"
+    required:
+      - "id"
+      - "files"
+    properties:
+      id:
+        type: "string"
+      files:
+        type: "array"
+        items:
+          $ref: "#/definitions/File"
+  File:
+    type: "object"
+    required:
+      - "name"
+    properties:
+      name:
+        type: "string"
+  Error:
+    required:
+      - "code"
+      - "message"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+            
