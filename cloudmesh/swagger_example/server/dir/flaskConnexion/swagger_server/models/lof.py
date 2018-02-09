@@ -6,7 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-#java.io.File  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -22,11 +21,11 @@ class LOF(Model):
         :param id: The id of this LOF.  # noqa: E501
         :type id: str
         :param files: The files of this LOF.  # noqa: E501
-        :type files: List[File]
+        :type files: List[str]
         """
         self.swagger_types = {
             'id': str,
-            'files': List[File]
+            'files': List[str]
         }
 
         self.attribute_map = {
@@ -77,7 +76,7 @@ class LOF(Model):
 
 
         :return: The files of this LOF.
-        :rtype: List[File]
+        :rtype: List[str]
         """
         return self._files
 
@@ -87,7 +86,7 @@ class LOF(Model):
 
 
         :param files: The files of this LOF.
-        :type files: List[File]
+        :type files: List[str]
         """
         if files is None:
             raise ValueError("Invalid value for `files`, must not be `None`")  # noqa: E501

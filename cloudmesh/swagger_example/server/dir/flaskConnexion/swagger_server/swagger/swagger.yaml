@@ -60,21 +60,12 @@ definitions:
       files:
         type: "array"
         items:
-          $ref: "#/definitions/File"
+          type: "string"
     example:
       files:
-      - name: "name"
-      - name: "name"
+      - "files"
+      - "files"
       id: "id"
-  File:
-    type: "object"
-    required:
-    - "name"
-    properties:
-      name:
-        type: "string"
-    example:
-      name: "name"
   Error:
     required:
     - "code"

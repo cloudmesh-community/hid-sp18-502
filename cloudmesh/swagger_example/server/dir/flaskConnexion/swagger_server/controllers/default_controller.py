@@ -1,6 +1,6 @@
 import connexion
 import six
-
+from dir_controller import *
 from swagger_server.models.lof import LOF  # noqa: E501
 from swagger_server import util
 
@@ -13,7 +13,7 @@ def dir_get():  # noqa: E501
 
     :rtype: LOF
     """
-    return 'do some magic!'
+    return LOF("root", getlistoffiles())
 
 
 def get_file_by_id(id):  # noqa: E501
