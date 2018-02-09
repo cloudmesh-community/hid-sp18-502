@@ -26,4 +26,4 @@ def get_file_by_id(id):  # noqa: E501
 
     :rtype: LOF
     """
-    return 'do some magic!'
+    return LOF(id, getlistbyid(id))
