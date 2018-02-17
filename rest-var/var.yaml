@@ -24,12 +24,12 @@ paths:
         - "application/json"
       responses:
         "200":
-          description: "Var info"
+          description: "variable value"
           schema:
             $ref: "#/definitions/VAR"
   /var/{id}:
     get:
-      description: "Returns info of variable by that id"
+      description: "Returns value of a named variable identified by id"
       operationId: getVarById
       parameters:
         - name: id
@@ -41,7 +41,7 @@ paths:
         - "application/json"
       responses: 
         "200":
-          description: "Info of variable"
+          description: "variable value"
           schema:
             $ref: "#/definitions/VAR"
       default:
