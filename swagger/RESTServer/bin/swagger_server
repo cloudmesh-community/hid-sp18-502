@@ -1,4 +1,4 @@
-#!/home/ankita/hid-sp18-502/rest-var/RESTServer/bin/python
+#!/home/ankita/hid-sp18-502/swagger/RESTServer/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'swagger-server==1.0.0','console_scripts','swagger_server'
 __requires__ = 'swagger-server==1.0.0'
 import re

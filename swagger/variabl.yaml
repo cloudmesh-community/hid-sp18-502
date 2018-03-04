@@ -19,14 +19,16 @@ produces:
 paths:
   /var:
     get:
-      description: "Returns information of variable"
+      description: "Returns list of variables"
       produces:
         - "application/json"
       responses:
         "200":
-          description: "variable value"
+          description: "A list of variables"
           schema:
-            $ref: "#/definitions/VAR"
+            type: "array"
+            items:
+              $ref: "#/definitions/VAR"
   /var/{id}:
     get:
       description: "Returns value of a named variable identified by id"
@@ -39,7 +41,7 @@ paths:
           type: string
       produces:
         - "application/json"
-      responses: 
+      responses:
         "200":
           description: "variable value"
           schema:
@@ -72,4 +74,3 @@ definitions:
         format: "int32"
       message:
         type: "string"
-            
