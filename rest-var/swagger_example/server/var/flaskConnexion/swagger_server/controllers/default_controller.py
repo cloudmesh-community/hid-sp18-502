@@ -16,7 +16,8 @@ def get_var_by_id(id):  # noqa: E501
 
     :rtype: VAR
     """
-    return VAR(get_var_byid(id))
+    item = get_var_byid(id)
+    return VAR(item[0], item[1], item[2])
 
 
 def var_get():  # noqa: E501
@@ -27,4 +28,5 @@ def var_get():  # noqa: E501
 
     :rtype: VAR
     """
-    return VAR(get_var())
+    item = get_var()
+    return VAR(item[0], item[1], item[2])
