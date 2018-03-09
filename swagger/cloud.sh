@@ -23,8 +23,4 @@ cp ~/hid-sp18-502/swagger/var_controller.py ~/hid-sp18-502/swagger/swagger_examp
 virtualenv RESTServer
 source RESTServer/bin/activate
 
-# change directory and install requirements of server side code
-cd ~/hid-sp18-502/swagger/swagger_example/server/var/flaskConnexion
-pip install -r requirements.txt
-python setup.py install
 
