@@ -2,14 +2,14 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: "Key value pair REST service"
-  description: "Managing Variables"
+  description: "Get Variables, their values and type"
   termOfService: "http://swagger.io/terms/"
   contact:
     name: "REST Service to get key value pair"
   license:
     name: "Apache"
 host: "localhost:8080"
-basePath: "/api"
+basePath: "/cloudmesh/variable"
 schemes:
   - "http"
 consumes:
