@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/ankita/hid-sp18-502/rest-var/RESTServer"
+set -gx VIRTUAL_ENV "/home/ankita/hid-sp18-502/swagger/RESTServer"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

@@ -1,0 +1,77 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: "Cloudmesh Variables"
+  description: "Managing Variables"
+  termOfService: "http://swagger.io/terms/"
+  contact:
+    name: "Cloudmesh REST Service"
+  license:
+    name: "Apache"
+host: "localhost:8080"
+basePath: "/api"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /var:
+    get:
+      description: "Returns list of variables"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "A list of variables"
+          schema:
+	    type: "array"
+	    items:
+              $ref: "#/definitions/VAR"
+  /var/{id}:
+    get:
+      description: "Returns value of a named variable identified by id"
+      operationId: getVarById
+      parameters:
+        - name: id
+          in: path
+          description: name of variable
+          required: true
+          type: string
+      produces:
+        - "application/json"
+      responses: 
+        "200":
+          description: "variable value"
+          schema:
+            $ref: "#/definitions/VAR"
+      default:
+        description: unexpected error
+        schema:
+          $ref: '#/definition/Error'
+definitions:
+  VAR:
+    type: "object"
+    required:
+      - "id"
+      - "value"
+      - "type"
+    properties:
+      id:
+        type: "string"
+      value:
+        type: "string"
+      type:
+        type: "string"
+  Error:
+    required:
+      - "code"
+      - "message"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+            

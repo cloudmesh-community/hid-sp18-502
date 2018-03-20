@@ -1,4 +1,4 @@
-#!/home/ankita/hid-sp18-502/rest-var/RESTServer/bin/python
+#!/home/ankita/hid-sp18-502/swagger/RESTServer/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'connexion==1.1.15','console_scripts','connexion'
 __requires__ = 'connexion==1.1.15'
 import re

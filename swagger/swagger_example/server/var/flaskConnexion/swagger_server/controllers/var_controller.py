@@ -6,8 +6,11 @@ db=client.variables
 # Showcasing the count() method of find, count the total number of 5 ratings
 
 def get_var():
-	item = db.Var.find().limit(1)
-	return (item['name'], item['value'], item['type'])
+	l = list()
+	for each in db.Var.find():
+		l.append((each['name'], each['value'], each['type']))
+	return l
 
-def get_var_byid(id):
-	return db.Var.find({'name':id})
+def get_var_by_id_mongo(id):
+	for each in db.Var.find({'name':id}):
+		return (each['name'], each['value'], each['type'])

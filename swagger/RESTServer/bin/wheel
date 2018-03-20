@@ -1,4 +1,4 @@
-#!/home/ankita/hid-sp18-502/rest-var/RESTServer/bin/python
+#!/home/ankita/hid-sp18-502/swagger/RESTServer/bin/python
 
 # -*- coding: utf-8 -*-
 import re

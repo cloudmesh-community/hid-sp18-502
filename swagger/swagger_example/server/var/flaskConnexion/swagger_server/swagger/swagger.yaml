@@ -1,9 +1,9 @@
 ---
 swagger: "2.0"
 info:
-  description: "A simple service to fetch information of variable"
+  description: "Managing Variables"
   version: "0.0.1"
-  title: "VAriables"
+  title: "Cloudmesh Variables"
   contact:
     name: "Cloudmesh REST Service"
   license:
@@ -19,20 +19,22 @@ produces:
 paths:
   /var:
     get:
-      description: "Returns information of variable"
+      description: "Returns list of variables"
       operationId: "var_get"
       produces:
       - "application/json"
       parameters: []
       responses:
         200:
-          description: "Var info"
+          description: "A list of variables"
           schema:
-            $ref: "#/definitions/VAR"
+            type: "array"
+            items:
+              $ref: "#/definitions/VAR"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /var/{id}:
     get:
-      description: "Returns info of variable by that id"
+      description: "Returns value of a named variable identified by id"
       operationId: "get_var_by_id"
       produces:
       - "application/json"
@@ -44,7 +46,7 @@ paths:
         type: "string"
       responses:
         200:
-          description: "Info of variable"
+          description: "variable value"
           schema:
             $ref: "#/definitions/VAR"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
