@@ -1,6 +1,7 @@
-Owner:
-    firstname: "Ankita"
-    lastname: "Alshi"
-    hid: "hid-sp18-502"
-    community: "I524"
+---
+owner:
+  firstname: "Ankita"
+  lastname: "Alshi"
+  hid: "hid-sp18-502"
+  community: "I524"
 
