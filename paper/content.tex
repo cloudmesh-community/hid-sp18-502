@@ -158,6 +158,48 @@ node,the stage is further divided into tasks and these tasks are scheduled to
 run on worker nodes.
 
 \section{Use Case}
+Presto was originally developed by Facebook for low latency analytical query
+processing. A lot of organizations have shown interest in presto after it
+was made open source in 2013. One such organization is Netflix. Netflix shared
+article on how presto is being used in the organization for supporting fast and
+interactive query processing. They have store petabytes of data using AWS S3 for
+ data warehouse.
+Netflix has a 10 petabyte data warehouse on AWS S3 which contains multiple
+data sets. Their clients query against this diverse database throughout the day.
+ Because of this it is not possible to cache the complete datasets in memory.
+More cache miss rate increase the time to process interactive queries. Data
+exploration usage pattern of presto becomes very useful in such case. Netflix
+big data team explained why using presto was best choice for their use case.
+Netflix had their own big data system before integrating presto. Presto provides
+ connector for Hadoop based system. They were able to use this connector to
+plug in their S3 data warehouse with presto functionality. It took them around
+a month to integrate presto in the their test environment. Another advantage of
+presto was its compatibility with SQL queries. As presto can parse SQL queries,
+it was easy for developers to get familiar with usage of presto.
+The only limitation stated by Netflix was that it did not provide any
+functionality to users to reproduce the queries. Their clients use presto to
+perform adhoc use cases. First preference for such queries is to use presto. If
+the query fails because of the size of the query then only clients use Hive or
+Pig to execute queries. Different clusters are used for presto servers and
+Hadoop servers. They both interact with same data stored on S3. Generally around
+ 2500 queries are performed per day on presto servers. As presto works on
+ in-memory query processing mechanism, around 7GB memory is allocated for task
+ on each node. Such that most of memory expensive and aggregate functions can be
+ performed on presto worker servers.
+Netflix also performed benchmarking on presto servers in their test environment.
+ Figure~\ref{f:benchmark} shows performance difference between presto and hive
+ for range of queries. Real production queries were used to perform this
+ benchmarking to evaluate the performance of presto. Three types of queries were
+ performed against variety of datasets - GroupBy, Join + GroupBy and Needle in
+ haystack (table scan). The conclusion made by Netflix team is that any queries
+ which require one or two map reduce task run 10 to 100 times faster on presto
+ compared to hadoop.
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{image/presto-benchmark.png}
+  \caption{Presto vs Hive Performance}\label{f:benchmark}
+\end{figure}
+
 
 \section{Conclusion}
 
