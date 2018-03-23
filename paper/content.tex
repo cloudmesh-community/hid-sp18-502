@@ -34,13 +34,14 @@ Presto is a SQL query engine developed specially for interactive analytics. It
 focuses on large commercial data warehouses with capacity of gigabytes to
 petabytes. It is open source and used for distributed systems. It is compatible
 with relational as well as NoSQL data sources such as Cassandra and
-Hive~\cite{hid-sp18-502-Presto}.
+Hive~\cite{hid-sp18-502-prestodb-intro}.
 
 It is being used by big organizations like Facebook to run interactive queries
 against their large data warehouses. The main advantage of using Presto is that
 it allows to perform analytics on data from different data sources using single
 query. This allows data to be combined across organizations without extra
-overhead of separate queries for each data source~\cite{hid-sp18-502-Presto}.
+overhead of separate queries for each data
+source~\cite{hid-sp18-502-prestodb-intro}.
 \end{abstract}
 
 \keywords{hid-sp18-502, SQL, Hadoop, Map-reduce, Big data}
@@ -61,17 +62,18 @@ provides the functionality to interact with distributed database with very
 low latency.
 Hive can also be used for running SQL queries on big data systems but it takes
 longer time to execute the queries. Fast query execution of presto is achieved
-by complete pipelining of query execution. Also Presto is a in memory SQL query
-execution in engine which means that data on which query is executed resides in
-main memory of the nodes. This eliminates the time required to access that data
-from the disk. disadvantage of in-memory query execution is that it is not
-fault tolerant as the intermediate query results are not stored on any
+by complete pipelining of query
+execution~\cite{hid-sp18-502-presto-architecture}. Also Presto is a in memory
+SQL query execution in engine which means that data on which query is executed
+resides in main memory of the nodes. This eliminates the time required to access
+ that data from the disk. disadvantage of in-memory query execution is that it
+ is not fault tolerant as the intermediate query results are not stored on any
 non-volatile storage device. Also there is a restriction on the size of the
 query as not all the data can be stored in memory of the nodes. So large
 queries which require data more than the size of the main memory would not be
-executed successfully.
+executed successfully~\cite{hid-sp18-502-presto-compare}.
 Presto is implemented in Java as it is easy to integrate it with other systems
-and maintain the code as well.
+and maintain the code as well~\cite{hid-sp18-502-presto-architecture}.
 
 \section{Architecture}
 
@@ -82,19 +84,20 @@ Client queries are sent to the coordinator server. It first parses the SQL query
  its execution is planned such that it can be executed in pipeline. After that
  coordinator uses data location APIs to schedule the tasks to run on different
  worker nodes such that each worker node is execute query on its local data
- stored in main memory. Once tasks are schedule all the worker nodes execute
- each task in pipelined mode. The query is divided into stages and data is
- passed on from one stage to another as it is ready. This ensures that at a time
-  multiple queries are executed by each node providing additional level of
-  parallelism to achieve faster results. Pipelining is done across the network
-  such that any available node can execute different stages. The data transfer
-  is from main memory to main memory so it takes less time. when the result are
-  ready worker node sends it back to the client. Coordinator server keeps
-  monitoring the query execution.
+ stored in main memory~\cite{hid-sp18-502-presto-architecture}. Once tasks are
+ schedule all the worker nodes execute each task in pipelined mode. The query is
+ divided into stages and data is passed on from one stage to another as it is
+ ready. This ensures that at a time multiple queries are executed by each node
+ providing additional level of parallelism to achieve faster results. Pipelining
+ is done across the network such that any available node can execute different
+ stages. The data transfer is from main memory to main memory so it takes less
+ time. when the result are ready worker node sends it back to the client.
+ Coordinator server keeps monitoring the query
+ execution~\cite{hid-sp18-502-presto-architecture}.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{image/presto-architecture.png}
-  \caption{Presto Architecture}\label{f:architecture}
+  \caption{Presto Architecture~\cite{hid-sp18-502-presto-architecture}}\label{f:architecture}
 \end{figure}
 
 \section{Concepts}
@@ -105,43 +108,47 @@ towards.
 \subsubsection{Coordinator}
 Presto coordinator server can be considered by main backbone of the system.
 Coordinator server responsible for managing the worker server present in presto
-setting. All the client queries are routed to coordinator server. Coordinator
-server contains all the information of the worker servers, where they are
-located and the data that they locally store. This information is used wisely
-by the server to plan the query into task and to schedule these tasks across the
-nodes on the network such that data required for executing these task is either
-present locally or very close to the worker server. Additionally Coordinator
-server also keeps track of query execution once the worker nodes starts
-processing it.
-Coordinator server parse the SQL query and creates a logical model out of it
-such that it can be executed in series to stages. These stages are nothing but
-the task which are executed on distributed worker nodes available in the
-cluster. Each Presto installation needs at least one Coordinator server.
+setting~\cite{hid-sp18-502-prestodb-concept}. All the client queries are routed
+to coordinator server. Coordinator server contains all the information of the
+worker servers, where they are located and the data that they locally store.
+This information is used wisely by the server to plan the query into task and to
+ schedule these tasks across the nodes on the network such that data required
+ for executing these task is either present locally or very close to the worker
+ server. Additionally Coordinator server also keeps track of query execution
+ once the worker nodes starts
+ processing it~\cite{hid-sp18-502-prestodb-concept}. Coordinator server parse
+the SQL query and creates a logical model out of it such that it can be executed
+ in series to stages~\cite{hid-sp18-502-prestodb-concept}. These stages are
+ nothing but the task which are executed on distributed worker nodes available
+ in the cluster. Each Presto installation needs at least one Coordinator server.
 
 \subsubsection{Worker}
 Worker server is mainly responsible for processing the queries assigned to it
 by the coordinator. Worker node fetches the data required for the query
-processing from connectors or other worker nodes. When a new presto worker node
+processing from connectors or other worker
+nodes~\cite{hid-sp18-502-prestodb-concept}. When a new presto worker node
 starts up, it informs the coordinator server in the presto installation. This
 way the coordinator server gets to know that new worker is added to the
 installation and can be considered to schedule tasks to run on it.
 Worker node executes the query as it is planned by the coordinator. Intermediate
 results generated by worker nodes are passed on to other worker node on which
 the next execution stage is scheduled. Final results generated by worker node is
-sent back to the coordinator server which sends it back to the client.
+sent back to the coordinator server which sends it back to
+the client~\cite{hid-sp18-502-prestodb-concept}.
 
 \subsection{Data Sources}
 Presto id designed to work with different types of data sources. Connectors are
 used in order to run SQL query against all the types data sources. Connectors
 are very similar to database drivers, they provide set of APIs to connect to
 that database. Presto contains connectors to connect to Hive, HBase, relational
-databases and NoSQL data sources as well. Presto keeps catalogs to resolve the
-queries. Catalogs are used to store the schema for different connectors.
-Catalogs are used to reference the connectors. Schema is nothing but way of
-organizing the data in different data sources. schema for a relational database
+databases and NoSQL data sources as well~\cite{hid-sp18-502-prestodb-concept}.
+Presto keeps catalogs to resolve the queries. Catalogs are used to store the
+schema for different connectors. Catalogs are used to reference the connectors.
+Schema is nothing but way of organizing the data in different data
+sources~\cite{hid-sp18-502-prestodb-concept}. schema for a relational database
 is table whereas for a NoSQL database is a document. Catalogs and schema are
 used to defined traditional set of tables against which the SQL queries can be
-processed.
+processed~\cite{hid-sp18-502-prestodb-concept}.
 
 \subsection{Query Execution}
 Client sends SQL statements to the coordinator. This SQL statement can not be
@@ -149,13 +156,14 @@ executed as it is by the worker. Coordinator server parses this statement into
 distributed query plan. Distributed query plan can be visualized as a tree with
 leaf nodes processing small tasks and parent of those nodes executing aggregated
 functions on their results. At the end root node aggregates results of all
-nodes in the tree to create the final output.
+nodes in the tree to create the final
+output~\cite{hid-sp18-502-prestodb-concept}.
 Distributed query plan is created as a set of interconnected stages. Data flows
 from one stage to another. Each stage might involve in retrieving data from
 different data sources using connectors. At the end of each stage an
 intermediate output is generated. Instead of running a complete stage on one
 node,the stage is further divided into tasks and these tasks are scheduled to
-run on worker nodes.
+run on worker nodes~\cite{hid-sp18-502-prestodb-concept}.
 
 \section{Use Case}
 Presto was originally developed by Facebook for low latency analytical query
@@ -163,29 +171,31 @@ processing. A lot of organizations have shown interest in presto after it
 was made open source in 2013. One such organization is Netflix. Netflix shared
 article on how presto is being used in the organization for supporting fast and
 interactive query processing. They have store petabytes of data using AWS S3 for
- data warehouse.
+ data warehouse~\cite{hid-sp18-502-presto-usecase}.
 Netflix has a 10 petabyte data warehouse on AWS S3 which contains multiple
 data sets. Their clients query against this diverse database throughout the day.
  Because of this it is not possible to cache the complete datasets in memory.
 More cache miss rate increase the time to process interactive queries. Data
 exploration usage pattern of presto becomes very useful in such case. Netflix
 big data team explained why using presto was best choice for their use case.
-Netflix had their own big data system before integrating presto. Presto provides
- connector for Hadoop based system. They were able to use this connector to
-plug in their S3 data warehouse with presto functionality. It took them around
-a month to integrate presto in the their test environment. Another advantage of
-presto was its compatibility with SQL queries. As presto can parse SQL queries,
-it was easy for developers to get familiar with usage of presto.
-The only limitation stated by Netflix was that it did not provide any
-functionality to users to reproduce the queries. Their clients use presto to
-perform adhoc use cases. First preference for such queries is to use presto. If
-the query fails because of the size of the query then only clients use Hive or
-Pig to execute queries. Different clusters are used for presto servers and
-Hadoop servers. They both interact with same data stored on S3. Generally around
- 2500 queries are performed per day on presto servers. As presto works on
- in-memory query processing mechanism, around 7GB memory is allocated for task
- on each node. Such that most of memory expensive and aggregate functions can be
- performed on presto worker servers.
+Netflix had their own big data system before integrating
+presto~\cite{hid-sp18-502-presto-usecase}. Presto provides connector for Hadoop
+based system. They were able to use this connector to plug in their S3 data
+warehouse with presto functionality. It took them around a month to integrate
+presto in the their test environment. Another advantage of presto was its
+compatibility with SQL queries. As presto can parse SQL queries, it was easy for
+ developers to get familiar with usage of
+ presto~\cite{hid-sp18-502-presto-usecase}. The only limitation stated by
+ Netflix was that it did not provide any functionality to users to reproduce the
+  queries. Their clients use presto to perform adhoc use cases. First preference
+ for such queries is to use presto. If the query fails because of the size of
+ the query then only clients use Hive or Pig to execute queries. Different
+ clusters are used for presto servers and Hadoop servers. They both interact
+ with same data stored on S3. Generally around 2500 queries are performed per
+ day on presto servers. As presto works on in-memory query processing mechanism,
+ around 7GB memory is allocated for task on each
+ node~\cite{hid-sp18-502-presto-usecase}. Such that most of memory expensive and
+ aggregate functions can be performed on presto worker servers.
 Netflix also performed benchmarking on presto servers in their test environment.
  Figure~\ref{f:benchmark} shows performance difference between presto and hive
  for range of queries. Real production queries were used to perform this
@@ -193,17 +203,35 @@ Netflix also performed benchmarking on presto servers in their test environment.
  performed against variety of datasets - GroupBy, Join + GroupBy and Needle in
  haystack (table scan). The conclusion made by Netflix team is that any queries
  which require one or two map reduce task run 10 to 100 times faster on presto
- compared to hadoop.
+ compared to hadoop~\cite{hid-sp18-502-presto-usecase}.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{image/presto-benchmark.png}
-  \caption{Presto vs Hive Performance}\label{f:benchmark}
+  \caption{Presto vs Hive Performance~\cite{hid-sp18-502-presto-usecase}}\label{f:benchmark}
 \end{figure}
 
 
 \section{Conclusion}
-
-
+With increasing size of data warehouses it is becoming difficult to processes
+time sensitive queries. Goal of major organizations is to provide
+interactive analytical processing along with large time consuming queries.
+Presto is specially optimized to reduce the latency. As there is no disk used in
+ cluster, memory access time is eliminated~\cite{hid-sp18-502-presto-compare}.
+ So, presto is a well fit for company which needs to handle small interactive
+ queries against their large dataset. Queries might be operating on multiple
+ tables but it should within the space constraint of each task. Also as presto
+ does not provide any fault tolerance it should be part of any critical
+ processing which might break the system in production. Presto should not be
+ used for weekly reporting or batch processing as it might not be able to handle
+ the amount of data and kind of aggregate functions required for such
+ job~\cite{hid-sp18-502-presto-compare}.
+Presto is well suited for one time non critical interactive queries. It is cost
+effective for organizations as it can be integrate easily with existing big data
+ system. Also as it uses SQL for queries there is no need to train people new
+ technology. Presto being developed in Java helps in understanding the code and
+ further developing new connectors for different data sources. Major companies
+ like Airbnb, Netflix, Teradata are using and contributing to the open source to
+ enhance the technology.
 
 \begin{acks}
 
