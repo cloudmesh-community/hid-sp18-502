@@ -1,0 +1,83 @@
+% status: 0
+% chapter: TBD
+
+\title{REST Service for Azure object management}
+
+
+\author{Ankita Alshi}
+\affiliation{%
+  \institution{Indiana University}
+  \city{Bloomington} 
+  \state{IN} 
+  \postcode{47404}
+  \country{USA}}
+\email{aralshi@iu.edu}
+
+
+% The default list of authors is too long for headers}
+\renewcommand{\shortauthors}{Ankita Alshi}
+
+
+\begin{abstract}
+Microsoft uses its data center to host a cloud platform called Azure to
+provide platform as a service or infrastructure as a service. It is very
+difficult and costly for small companies to manage their own data center.
+Microsoft Azure helps such companies to focus on their services and takes care
+of the infrastructure for them. Azure can be used to design, develop and deploy
+variety of applications~\cite{hid-sp18-502-microsoft-azure}. The NIST Big Data
+ Reference Architecture (NBDRA) provides an interface that contains definitions
+ of important resources related to cloud computing in Json
+ format~\cite{hid-sp18-502-nist-vol8}. Our goal is to create rest service that
+ will help users identify the properties of Azure virtual machines and other
+ resources available on Azure platform.
+
+\end{abstract}
+
+\keywords{hid-sp18-502, Swagger, Virtual Machine, Azure}
+
+
+\maketitle
+
+\section{Introduction}
+The NIST Big Data Reference Architecture defines objects necessary to
+understand deployment on Microsoft Azure server. A REST service can be defined
+to add, delete and update instances of these objects. Microsoft Azure
+provides different services such as storage, compute, networking,
+containers, Databases, Analytics~\cite{hid-sp18-502-microsoft-azure}. Along with
+ the objects related to Azure given in NIST Big Data Reference Architecture, we
+ aim to identify more objects such that different services provided by Azure can
+ be covered. Object definitions will be done using swagger specification in
+ Json format. This specification will be used to generate REST service server
+ side and client side code using swagger codegen. Each object cab be accessed
+ by the REST service using its own base path. Base path for the objects will be
+ "cloudmesh/azure" followed by object name.
+
+
+\section{Object Definitions}
+\begin{itemize}
+
+\item Azure User Credentials: Username and password for authentication to allow
+access to objects.
+
+\item Azure Virtual Directories: Azure can be used for storage purpose as well.
+This object will contain virtual directories created by a user.
+
+\item Azure Files: The files stored on Azure under the virtual directories.
+
+\item Azure size: Size of the Azure machine image in terms of resources like
+number of cores, disks, primary and secondary memory, bandwidth and price.
+
+\item Azure image: image od different operating systems that can be installed on
+ virtual machines
+
+\item virtual machine: Key properties of Azure virtual machines including
+username, its status, operating system image running on it.
+
+
+\end{itemize}
+
+
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{report} 
+
