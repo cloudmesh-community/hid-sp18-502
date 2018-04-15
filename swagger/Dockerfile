@@ -12,7 +12,7 @@ RUN apt-get update -q && apt-get install -qy \
     #libbz2-dev \
     libreadline-dev \
     libsqlite3-dev \
-    pandoc \
+    #pandoc \
     wget \
     curl \
     #emacs \
@@ -32,10 +32,8 @@ WORKDIR /hid-sp18-502/swagger
 RUN wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar
 
 EXPOSE 8080
-
-
-#FROM openjdk:7 
+ 
 RUN make service
 
-#CMD ["make", "start"]
+CMD ["make", "start"]
 
