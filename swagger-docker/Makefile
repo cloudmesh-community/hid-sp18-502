@@ -50,6 +50,7 @@ service: dest
 	
 	rm *.jar
 	pip install --upgrade pip
+	pip install pymongo
 
 	cp -r *.py $(DESTDIR)/swagger_server/controllers
 	cp error.py $(DESTDIR)/swagger_server/models
