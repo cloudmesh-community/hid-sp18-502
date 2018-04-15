@@ -1,7 +1,7 @@
 import connexion
 import six
 
-from var_controller import *
+#from var_controller import *
 from swagger_server.models.var import VAR  # noqa: E501
 from swagger_server import util
 
@@ -26,9 +26,9 @@ def var_get():  # noqa: E501
 
 
     :rtype: List[VAR]
-    """
+   	"""
     listofVar = []
-    items = get_var()
-    for each in items:
-	listofVar.append(VAR(each[0], each[1], each[2]))
-    return listofVar
+    #items = get_var()
+    #for each in items:
+    listofVar.append(VAR("Variable", "int", "2"))
+    return listofVar 
