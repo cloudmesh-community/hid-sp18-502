@@ -6,7 +6,7 @@ CREATED=server
 all: service start 
 	@echo "DONE"
 
-docker-all: docker-build docker-start
+docker-all: docker-build docker-start 
 	@echo "DONE"
 
 docker-build:
@@ -68,7 +68,7 @@ start:
 	cd $(DESTDIR) && python -m swagger_server
 
 test:
-	curl http://localhost:8080/api/timestamp?path=/home/algo.txt
+	curl http://localhost:8080/cloudmesh/variable/var
 
 	#curl http://localhost:8080/cloudmesh/nlp/pos/Tim%20Cook%20is%20the%20CEO%20of%20Apple.
             
