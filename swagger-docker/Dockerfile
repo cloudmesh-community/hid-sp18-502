@@ -12,7 +12,7 @@ RUN apt-get update -q && apt-get install -qy \
     #libbz2-dev \
     libreadline-dev \
     libsqlite3-dev \
-    #pandoc \
+    pandoc \
     wget \
     curl \
     #emacs \
@@ -27,7 +27,7 @@ RUN apt-get update -q && apt-get install -qy \
 
 RUN git clone https://github.com/cloudmesh-community/hid-sp18-502.git
 
-WORKDIR /hid-sp18-502/swagger
+WORKDIR /hid-sp18-502/swagger-docker
 
 RUN wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar
 
