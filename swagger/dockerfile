@@ -35,7 +35,7 @@ EXPOSE 8080
 
 
 #FROM openjdk:7 
-RUN make service
+RUN make all
 
 CMD ["make", "start"]
 

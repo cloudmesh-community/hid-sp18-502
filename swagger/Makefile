@@ -2,7 +2,6 @@ SWAGGERCODEGEN=java -jar swagger-codegen-cli-2.3.1.jar
 YAMLFILE=variabl.yaml
 DESTDIR=server/var/flaskConnexion
 CREATED=server
-#TIMEDIR=time
 
 all: service start 
 	@echo "DONE"
