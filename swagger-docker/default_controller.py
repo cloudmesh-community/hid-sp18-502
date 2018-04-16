@@ -30,16 +30,8 @@ def get_database():
 
 
 def get_var_by_id(id):  # noqa: E501
-    """get_var_by_id
-
-    Returns value of a named variable identified by id # noqa: E501
-
-    :param id: name of variable
-    :type id: str
-    :rtype: VAR
-    """
 	get_database()
-    for each in db.Var.find({'name':id}):
+	for each in db.Var.find({'name':id}):
 		return VAR(each['name'], each['value'], each['type'])
 
 

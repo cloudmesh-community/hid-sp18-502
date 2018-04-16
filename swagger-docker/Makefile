@@ -12,7 +12,7 @@ docker-all: docker-build docker-start
 docker-build:
 	@echo "building the image from docker file..."
 	docker pull mongo:latest
-	docker run --name mongo1 -d mongo mongod --smallfiles
+	docker run --name mongo3 -d mongo mongod --smallfiles
 	@echo "image DONE"
 
 docker-pull:
