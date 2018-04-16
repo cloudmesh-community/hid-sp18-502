@@ -66,9 +66,8 @@ service: dest
 
 start:  
 	@echo "starting the service..."
-	mongod --dbpath data/db 
-	mongod
 	cd $(DESTDIR) && python -m swagger_server
+	nohup /usr/bin/mongod &
 
 test:
 	curl http://localhost:8080/cloudmesh/variable/var
