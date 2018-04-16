@@ -22,7 +22,7 @@ docker-pull:
 docker-start:
 	@echo "starting the service in container..."
 	docker run -p 8080:8080 ankita/variable
-	docker run --name some-mongo -d mongo
+	docker run -p 27017:27017 mongo
 
 
 docker-stop:
@@ -66,6 +66,7 @@ service: dest
 
 start:  
 	@echo "starting the service..."
+	sudo service mongod
 	cd $(DESTDIR) && python -m swagger_server
 
 test:
