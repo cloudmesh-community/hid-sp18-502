@@ -15,8 +15,9 @@ def get_var_by_id(id):  # noqa: E501
     :type id: str
     :rtype: VAR
     """
-    item = get_var_by_id_mongo(id)
-    return VAR(item[0], item[1], item[2])
+    #item = get_var_by_id_mongo(id)
+    #return VAR(item[0], item[1], item[2])
+    return VAR("Variable", "int", "2")
 
 
 def var_get():  # noqa: E501
