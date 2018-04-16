@@ -42,7 +42,7 @@ def var_get():  # noqa: E501
 
     :rtype: List[VAR]
    	"""
-    	listofVar = []
-	for each in db.Var.find():
-		listofVar.append(VAR(each['name'], each['value'], each['type']))
-    	return listofVar 
+    listofVar = []
+    for each in db.Var.find():
+	listofVar.append(VAR(each['name'], each['value'], each['type']))
+    return listofVar 
