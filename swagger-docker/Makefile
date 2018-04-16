@@ -12,7 +12,7 @@ docker-all: docker-build docker-start
 docker-build:
 	@echo "building the image from docker file..."
 	docker pull mongo:latest
-	docker run -v "$(pwd)":/data --name mongo -d mongo mongod --smallfiles
+	docker run --name mongo1 -d mongo mongod --smallfiles
 	@echo "image DONE"
 
 docker-pull:
@@ -68,7 +68,6 @@ service: dest
 start:  
 	@echo "starting the service..."
 	cd $(DESTDIR) && python -m swagger_server
-	nohup /usr/bin/mongod &
 
 test:
 	curl http://localhost:8080/cloudmesh/variable/var
