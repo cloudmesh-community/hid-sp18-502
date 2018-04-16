@@ -6,7 +6,7 @@ Thanks to Ramyashree for Mongodb implementation.
 
 ## Implementation :
 * The specification of the Swagger REST service is defined in the YAML file `variabl.yaml` file
-* Logic to connect to database and fetch results is documented in default_controller.py
+* Logic to connect to database and fetch results is documented in `default_controller.py`
 * The server-side code was generated using Swagger Codegen
 
 ## Steps for Execution :
