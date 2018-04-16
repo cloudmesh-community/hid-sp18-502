@@ -56,7 +56,7 @@ service: dest
 	cp error.py $(DESTDIR)/swagger_server/models
 	cp var.py $(DESTDIR)/swagger_server/models
 	cp base_model_.py $(DESTDIR)/swagger_server/models
-	#cd $(TIMEDIR) && pip install -r requirements.txt && python setup.py install
+	
 	
 	cd $(DESTDIR) && pip install -r requirements.txt && \
 	python setup.py install 
@@ -65,13 +65,11 @@ service: dest
 
 start:  
 	@echo "starting the service..."
-	#cp timestamp.pyc $(DESTDIR)/swagger_server/models
 	cd $(DESTDIR) && python -m swagger_server
 
 test:
 	curl http://localhost:8080/cloudmesh/variable/var
 
-	#curl http://localhost:8080/cloudmesh/nlp/pos/Tim%20Cook%20is%20the%20CEO%20of%20Apple.
             
 stop:
 	@echo "stopping the service"

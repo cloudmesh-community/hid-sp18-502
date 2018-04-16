@@ -32,6 +32,7 @@ WORKDIR /hid-sp18-502/swagger-docker
 RUN wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar
 
 EXPOSE 8080
+EXPOSE 27017
  
 RUN make service
 
