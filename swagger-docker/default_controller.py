@@ -1,9 +1,24 @@
 import connexion
 import six
+from pymongo import MongoClient
 
-#from var_controller import *
 from swagger_server.models.var import VAR  # noqa: E501
 from swagger_server import util
+
+client = MongoClient('localhost', 27017)
+db = client.variable
+
+n = ['variable1', 'variable2', 'variable3']
+v = ['3', 'Ankita', 'True']
+t = ['int', 'string', 'boolean']
+
+for x in range(len(n)):
+	var = {
+		'name': n[x],
+		'value': v[x],
+		'type': t[x]
+	}
+	result = db.Var.insert_one(var)
 
 
 def get_var_by_id(id):  # noqa: E501
@@ -15,9 +30,8 @@ def get_var_by_id(id):  # noqa: E501
     :type id: str
     :rtype: VAR
     """
-    #item = get_var_by_id_mongo(id)
-    #return VAR(item[0], item[1], item[2])
-    return VAR("Variable", "int", "2")
+    for each in db.Var.find({'name':id}):
+		return VAR(each['name'], each['value'], each['type'])
 
 
 def var_get():  # noqa: E501
@@ -28,8 +42,7 @@ def var_get():  # noqa: E501
 
     :rtype: List[VAR]
    	"""
-    listofVar = []
-    #items = get_var()
-    #for each in items:
-    listofVar.append(VAR("Variable", "int", "2"))
-    return listofVar 
+    	listofVar = []
+	for each in db.Var.find():
+		listofVar.append(VAR(each['name'], each['value'], each['type']))
+    	return listofVar 
