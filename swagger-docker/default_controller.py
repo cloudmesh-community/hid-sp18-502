@@ -35,14 +35,7 @@ def get_var_by_id(id):  # noqa: E501
 
 
 def var_get():  # noqa: E501
-    """var_get
-
-    Returns list of variables # noqa: E501
-
-
-    :rtype: List[VAR]
-    """
-    listofVar = []
-    for each in db.Var.find():
-	listofVar.append(VAR(each['name'], each['value'], each['type']))
-    return listofVar 
+	listofVar = []
+	for each in db.Var.find():
+		listofVar.append(VAR(each['name'], each['value'], each['type']))
+	return listofVar 
