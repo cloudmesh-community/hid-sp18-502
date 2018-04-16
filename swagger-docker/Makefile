@@ -66,7 +66,8 @@ service: dest
 
 start:  
 	@echo "starting the service..."
-	sudo service mongod
+	mongod --dbpath data/db 
+	mongod
 	cd $(DESTDIR) && python -m swagger_server
 
 test:
