@@ -11,7 +11,8 @@ docker-all: docker-build docker-start
 
 docker-build:
 	@echo "building the image from docker file..."
-	docker build -t ankita/variable .
+	docker pull mongo:latest
+	docker run -v "$(pwd)":/data --name mongo -d mongo mongod --smallfiles
 	@echo "image DONE"
 
 docker-pull:
@@ -21,8 +22,8 @@ docker-pull:
 
 docker-start:
 	@echo "starting the service in container..."
-	docker run -p 8080:8080 ankita/variable
-	docker run -p 27017:27017 mongo
+	docker build -t ankita/variable .
+	docker run --link mongo:mongo -p 8080:8080 ankita/variable
 
 
 docker-stop:
