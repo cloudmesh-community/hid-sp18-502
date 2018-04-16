@@ -26,17 +26,17 @@ def get_database():
 			'type': t[x]
 		}
 		result = db.Var.insert_one(var)
-	return
+	return db
 
 
 def get_var_by_id(id):  # noqa: E501
-	get_database()
+	db = get_database()
 	for each in db.Var.find({'name':id}):
 		return VAR(each['name'], each['value'], each['type'])
 
 
 def var_get():  # noqa: E501
-	get_database()
+	db = get_database()
 	listofVar = []
 	for each in db.Var.find():
 		listofVar.append(VAR(each['name'], each['value'], each['type']))

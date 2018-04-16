@@ -11,7 +11,7 @@ RUN apt-get update -q && apt-get install -qy \
     #libbz2-dev \
     libreadline-dev \
     libsqlite3-dev \
-    pandoc \
+    #pandoc \
     wget \
     curl \
     #emacs \
