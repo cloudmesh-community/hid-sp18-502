@@ -22,6 +22,7 @@ docker-pull:
 docker-start:
 	@echo "starting the service in container..."
 	docker run -p 8080:8080 ankita/variable
+	docker run --name some-mongo -d mongo
 
 
 docker-stop:
