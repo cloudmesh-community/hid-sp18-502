@@ -15,7 +15,7 @@ Thanks to Ramyashree for Mongodb implementation.
 
 * navigate to the directory 
 
-        `cd /hid-sp18-502/swagger/swagger-docker/`
+        `cd /hid-sp18-502/swagger/cloudmesh/variable`
 
 
 * Using docker to run the Database Description swagger service :
