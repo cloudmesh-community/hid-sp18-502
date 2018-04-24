@@ -1,0 +1,12 @@
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{image/presto-architecture.png}
+  \caption{Presto Architecture~\cite{hid-sp18-502-presto-architecture}}\label{f:architecture}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{image/presto-benchmark.png}
+  \caption{Presto vs Hive Performance~\cite{hid-sp18-502-presto-usecase}}\label{f:benchmark}
+\end{figure}
+\efloatseparator
+ 
