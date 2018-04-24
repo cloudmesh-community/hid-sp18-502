@@ -53,6 +53,7 @@ service: dest
 	pip install --upgrade pip
 	
 	cp -r *.py $(DESTDIR)/swagger_server/models
+	cp default_controller.py $(DESTDIR)/swagger_server/controllers
 
 	cd $(DESTDIR) && pip install -r requirements.txt && \
 	python setup.py install 
