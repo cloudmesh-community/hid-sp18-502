@@ -47,7 +47,7 @@ service: dest
 	-i $(YAMLFILE) \
 	-l python-flask \
 	-o $(DESTDIR) 
-	-D supportPython2=true
+	-D supportPython3=true
 	
 	rm *.jar
 	pip install --upgrade pip
