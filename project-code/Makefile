@@ -1,48 +1,76 @@
-#
-# Naturally you need to adapt this to make work for your project
-#
+SWAGGERCODEGEN=java -jar swagger-codegen-cli-2.3.1.jar
+YAMLFILE=azure.yaml
+DESTDIR=server/azure/flaskConnexion
+CREATED=server
 
-all:
-	@echo "create a useful makefile that makes it easy to run your code"
-	@echo make sure your data is downloaded from the intenet"
+all: service start 
+	@echo "DONE"
 
-data:
-	@echo "wget or curl your data from the internet"
+docker-all: docker-build docker-start 
+	@echo "DONE"
 
-generate:
-	@echo "generat your code such as swagger services"
+docker-build:
+	@echo "building the image from docker file..."
+	docker build -t cloudmesh/azure .
+	@echo "image DONE"
 
-install: install-swagger install-mongo
-	@echo "install your code so it can be used on the system it is supposed to run"
-	@echo "you could have multiple installs so we giva na exampel"
+docker-pull:
+	@echo "pulling the image from dockerhub..."
+	docker pull cloudmesh/azure
+	@echo "image DONE"
 
-install-swagger:
-	@echo "install your swagger services"
+docker-start:
+	@echo "starting the service in container..."
+	docker run -p 8080:8080 cloudmesh/azure
 
-install-mongo:
-	@echo "install your mongo services - this is just an example, you may not use mongo"
 
-start: start-swagger start-mongo
-  @echo "start your code so it can be used on the system it is supposed to run"
-	@echo "you could have multiple starts so we giva na exampel"
+docker-stop:
+	@echo "stoping the service..."
+	docker stop $$(docker ps -alq)
+	@echo "service stopped"
 
-start-swagger:
-	@echo "start your swagger services"
+docker-remove:
+	@echo "removing the image..."
+	docker rmi -f ankita/variable
+	@echo "image removed"
 
-stop-mongo:
-	@echo "stop your mongo services - this is just an example, you may not use mongo"
+docker-clean: docker-stop docker-remove
+	@echo "DONE"
 
-stop: stop-swagger stop-mongo
-  @echo "stop your code so it can be used on the system it is supposed to run"
-	@echo "you could have multiple stops so we giva na exampel"
+dest:
+	mkdir -p $(DESTDIR)
+	 
+service: dest
+	@echo "creating the service..."
+	wget http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar
+	$(SWAGGERCODEGEN) generate \
+	-i $(YAMLFILE) \
+	-l python-flask \
+	-o $(DESTDIR) 
+	-D supportPython2=true
+	
+	rm *.jar
+	pip install --upgrade pip
+	
+	
+	cd $(DESTDIR) && pip install -r requirements.txt && \
+	python setup.py install 
+	
+	
 
-stop-swagger:
-	@echo "stop your swagger services"
-
-stop-mongo:
-	@echo "stop your mongo services - this is just an example, you may not use mongo"
+start:  
+	@echo "starting the service..."
+	cd $(DESTDIR) && python -m swagger_server
 
 test:
-	@echo "test your service"
+	curl http://localhost:8080/cloudmesh/azure/resourcegroup/create/sample
 
+            
+stop:
+	@echo "stopping the service"
+	ps -ef | grep swagger_server | grep -v "grep" | awk '{print $$2}' | xargs kill -9
+	@echo "service stopped"
 
+clean:
+	@echo "removing service files created"
+	rm -rf $(CREATED)
