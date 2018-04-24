@@ -52,7 +52,8 @@ service: dest
 	rm *.jar
 	pip install --upgrade pip
 	
-	
+	cp -r *.py $(DESTDIR)/swagger_server/models
+
 	cd $(DESTDIR) && pip install -r requirements.txt && \
 	python setup.py install 
 	
