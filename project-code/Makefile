@@ -51,6 +51,7 @@ service: dest
 	
 	rm *.jar
 	pip install --upgrade pip
+	pip install azure
 	
 	cp -r *.py $(DESTDIR)/swagger_server/models
 	cp default_controller.py $(DESTDIR)/swagger_server/controllers

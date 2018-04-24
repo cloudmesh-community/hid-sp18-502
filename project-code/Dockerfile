@@ -14,7 +14,7 @@ RUN apt-get update -q && apt-get install -qy \
     pandoc \
     wget \
     curl \
-    emacs \
+    #emacs \
     git-core \
     default-jre \
     software-properties-common -y
