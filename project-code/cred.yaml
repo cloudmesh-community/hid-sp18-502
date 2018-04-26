@@ -1,5 +1,7 @@
 azure:
-	clientId: 9ab22f0a-37be-48a5-bc58-cf6303a845d9
-	clientSecret: UmnVkEyZkEEvP/bRPa679DPl0lEG1o+YKvQBU+BpGj4=
-	tenantId: d751dd0d-32c1-4886-b132-9f56e676c2b9
-	subscript: 00efbb10-0564-4235-9a6d-256b4b94070b
+  clientId: "ec055508-8ad8-44c0-b134-b43bbdf801a4"
+  clientSecret: "h0MfTN0MHvkm1uTF8uXMGvJAJkyUK8LQTNaAOT0HCcU="
+  tenantId: "d751dd0d-32c1-4886-b132-9f56e676c2b9"
+  subscript: "00efbb10-0564-4235-9a6d-256b4b94070b"
+
+
