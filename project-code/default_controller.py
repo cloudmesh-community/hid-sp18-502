@@ -23,7 +23,7 @@ from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.compute import ComputeManagementClient
 from azure.mgmt.compute.models import DiskCreateOption
 
-cred = yaml.load(open(cred.yaml))
+cred = yaml.load(open(./hid-sp18-502/project-code/cred.yaml))
 subscription_id = cred['azure']['subscript']
 credentials = ServicePrincipalCredentials(
                                             client_id=cred['azure']['clientId'],
