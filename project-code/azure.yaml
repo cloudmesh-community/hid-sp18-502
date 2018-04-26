@@ -1,9 +1,9 @@
-# swagger service for Azure Virtual Machines
 swagger: '2.0'
 info:
-  version: '0.0.3'
+  version: '1.0'
   title: 'Azure REST Service Using Swagger'
   description: 'Rest Service that allows to create and manage VMs on Azure'
+  termsOfService: "http://swagger.io/terms/"
   contact:
     name: 'Cloudmesh Azure REST service'
   license:
@@ -19,8 +19,18 @@ consumes:
 produces:
   - 'application/json'
 
-
 paths:
+  '/resourcegroups':
+    get:
+      description: "Returns list of resource group present"
+      produces:
+        - 'application/json'
+      responses:
+        "200":
+          description: "List of resource groups"
+          schema:
+            $ref: "#/definitions/Resourcegroup"
+
   '/resourcegroup/{id}':
     get:
       description: "Returns details of resource group with given name"
@@ -57,75 +67,210 @@ paths:
           schema:
             type: string
 
-  '/vm/{id}':
+  '/resourcegroup/delete/{id}':
     get:
-      description: "Returns details of virtual machine with given name"
-      operationId: getVirtualMachineById
+      description: "Delete resource group with given name"
+      operationId: deleteResourceGroupById
       produces:
         - 'application/json'
       parameters:
         - name: id
           in: path
-          description: 'name of the virtual machine'
+          description: 'name of the resource group'
           required: true
           type: string
+      responses:
+        '200':
+          description: 'Result of resource group deletion'
+          schema:
+            type: string
+
+  '/vms/{id}':
+    get:
+      description: "Returns list of virtual machines present in given
+      resource group"
+      produces:
+        - 'application/json'
+      parameters:
+        - name: id
+          in: path
+          description: 'name of the resource group'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 'List of virtual machines'
+          schema:
+            $ref: '#/definitions/VM'
+  '/vm':
+    put:
+      description: "Returns details of virtual machine with given name"
+      operationId: getVirtualMachineById
+      produces:
+        - 'application/json'
+      parameters:
+        - name: detail
+          in: body
+          description: 'name of the virtual machine and resource group'
+          required: true
+          schema:
+            $ref: '#/definitions/detail'
       responses:
         '200':
           description: 'Details of virtual machine of given name'
           schema:
             $ref: '#/definitions/VM'
 
-  '/vm/create/{id}':
-    get:
+  '/vm/create':
+    put:
       description: "Creates new vitual machine with given name"
       operationId: createVirtualMachineById
       produces:
         - 'application/json'
       parameters:
-        - name: id
-          in: path
-          description: 'name of the virtual machine'
+        - name: detail
+          in: body
+          description: 'parameters to create VM like nic, IP Address, Image
+          reference'
           required: true
-          type: string
+          schema:
+            $ref: '#/definitions/detail'
       responses:
         '200':
           description: 'Result of virtual machine creation'
           schema:
             type: string
 
-  '/vm/start/{id}':
-    get:
-      description: "Start vitual machine with given name"
+  '/vm/start':
+    put:
+      description: "Start virtual machine with given name"
       operationId: startVirtualMachineById
       produces:
         - 'application/json'
       parameters:
-        - name: id
-          in: path
-          description: 'name of the virtual machine'
+        - name: detail
+          in: body
+          description: 'name of the virtual machine and resource group'
           required: true
-          type: string
+          schema:
+            $ref: '#/definitions/detail'
       responses:
         '200':
           description: 'Result of starting virtual machine'
           schema:
             type: string
 
-  '/vm/stop/{id}':
-    get:
-      description: "Stop vitual machine with given name"
+  '/vm/stop':
+    put:
+      description: "Stop virtual machine with given name"
       operationId: stopVirtualMachineById
       produces:
         - 'application/json'
       parameters:
-        - name: id
-          in: path
-          description: 'name of the virtual machine'
+        - name: detail
+          in: body
+          description: 'name of the virtual machine and resource group'
           required: true
-          type: string
+          schema:
+            $ref: '#/definitions/detail'
       responses:
         '200':
           description: 'Result of stopping virtual machine'
+          schema:
+            type: string
+
+  '/ip/create':
+    put:
+      description: "Creates new IP address with given location"
+      operationId: createIPByLocation
+      produces:
+        - 'application/json'
+      parameters:
+        - name: detail
+          in: body
+          description: 'name of IP adress and the location'
+          required: true
+          schema:
+            $ref: '#/definitions/detail'
+      responses:
+        '200':
+          description: 'Result of IP address creation'
+          schema:
+            type: string
+
+  '/vnet/create':
+    put:
+      description: "Creates new Vnet with given name"
+      operationId: createVnetById
+      produces:
+        - 'application/json'
+      parameters:
+        - name: detail
+          in: body
+          description: 'name of the virtual network'
+          required: true
+          schema:
+            $ref: '#/definitions/detail'
+      responses:
+        '200':
+          description: 'Result of virtual network creation'
+          schema:
+            type: string
+
+  '/subnet/create':
+    put:
+      description: "Creates new subnet with given name"
+      operationId: createSubnetById
+      produces:
+        - 'application/json'
+      parameters:
+        - name: detail
+          in: body
+          description: 'name of the sub network'
+          required: true
+          schema:
+            $ref: '#/definitions/detail'
+      responses:
+        '200':
+          description: 'Result of sub network creation'
+          schema:
+            type: string
+
+  '/nic/create':
+    put:
+      description: "Creates new network interface card with given name"
+      operationId: createNicById
+      produces:
+        - 'application/json'
+      parameters:
+        - name: detail
+          in: body
+          description: 'name of the network interface card'
+          required: true
+          schema:
+            $ref: '#/definitions/detail'
+      responses:
+        '200':
+          description: 'Result of network interface card creation'
+          schema:
+            type: string
+
+  '/datadisk/create':
+    put:
+      description: "Creates new data disk of given size"
+      operationId: createDiskById
+      produces:
+        - 'application/json'
+      parameters:
+        - name: detail
+          in: body
+          description: 'size of new data disk'
+          required: true
+          schema:
+            $ref: '#/definitions/detail'
+      responses:
+        '200':
+          description: 'Name of the new Data disk created'
           schema:
             type: string
 
@@ -202,11 +347,40 @@ definitions:
       location:
         type: "string"
 
-
-
-
-
-
-
+  detail:
+    type: 'object'
+    properties:
+      group_name:
+        type: "string"
+      vm_name:
+        type: "string"
+      location:
+        type: "string"
+      disk_size:
+        type: "string"
+      ip_name:
+        type: "string"
+      vnet_name:
+        type: "string"
+      subnet_name:
+        type: "string"
+      nic_name:
+        type: "string"
+      computer_name:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+      vm_size:
+        type: "string"
+      publisher:
+        type: "string"
+      offer:
+        type: "string"
+      sku:
+        type: "string"
+      version:
+        type: "string"
 
 
