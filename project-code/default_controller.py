@@ -1,7 +1,7 @@
 import connexion
 import six
 import yaml
-import os.path import expanduser
+from os.path import expanduser
 
 from swagger_server.models.resourcegroup import Resourcegroup  # noqa: E501
 from swagger_server.models.resourcegroup_properties import ResourcegroupProperties  #
