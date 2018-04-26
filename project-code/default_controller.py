@@ -26,7 +26,7 @@ from azure.mgmt.compute.models import DiskCreateOption
 
 HOME = expanduser("~")
 CREDFILE = HOME+"/hid-sp18-502/project-code/cred.yaml"
-cred = yaml.load(open(CREADFILE))
+cred = yaml.load(open(CREDFILE))
 subscription_id = cred['azure']['subscript']
 credentials = ServicePrincipalCredentials(
                                             client_id=cred['azure']['clientId'],
