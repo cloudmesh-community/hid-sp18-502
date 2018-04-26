@@ -1,6 +1,7 @@
 import connexion
 import six
 import yaml
+import os.path import expanduser
 
 from swagger_server.models.resourcegroup import Resourcegroup  # noqa: E501
 from swagger_server.models.resourcegroup_properties import ResourcegroupProperties  #
@@ -23,7 +24,9 @@ from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.compute import ComputeManagementClient
 from azure.mgmt.compute.models import DiskCreateOption
 
-cred = yaml.load(open(/hid-sp18-502/project-code/cred.yaml))
+HOME = expanduser("~")
+CREDFILE = HOME+"/hid-sp18-502/project-code/cred.yaml"
+cred = yaml.load(open(CREADFILE))
 subscription_id = cred['azure']['subscript']
 credentials = ServicePrincipalCredentials(
                                             client_id=cred['azure']['clientId'],
