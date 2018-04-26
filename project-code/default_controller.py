@@ -30,7 +30,7 @@ cred = yaml.load(open("/hid-sp18-502/project-code/cred.yaml"))
 subscription_id = cred['azure']['subscript']
 credentials = ServicePrincipalCredentials(
                                             client_id=cred['azure']['clientId'],
-                                            secret=cred['azure']['clentSecret'],
+                                            secret=cred['azure']['clientSecret'],
                                             tenant=cred['azure']['tenantId']
                                             )
 resource_client = ResourceManagementClient(credentials, subscription_id)
