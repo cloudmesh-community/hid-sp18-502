@@ -143,7 +143,7 @@ def create_resource_group_by_id(id):  # noqa: E501
     """
     print('\nCreate Resource Group')
     resource_client.resource_groups.create_or_update(id,
-                                                     {'location': LOCATION})
+                                                     {'location': 'westus'})
     return 'Resource group created'
 
 
