@@ -105,7 +105,8 @@ along with virtual machine like networking and storage components.
  \begin{figure}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/azure-architecture.PNG}
-        \caption{Azure Architecture}\label{fig:azure-architecture}
+        \caption{Azure Architecture~\cite{hid-sp18-502-azure-archi}}
+        \label{fig:azure-architecture}
 \end{figure}
 
 Azure uses resource group as logical containers that store different set of
@@ -158,7 +159,8 @@ generates documentation and programs.
 \begin{figure}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/swagger-generator.PNG}
-        \caption{Swagger Generator}\label{fig:swagger-generator}
+        \caption{Swagger Generator~\cite{hid-sp18-502-swagger}}
+        \label{fig:swagger-generator}
 \end{figure}
 
 Java is pre-requirement to generate code using swagger. Swagger codegen creates
@@ -176,14 +178,14 @@ production~\cite{hid-sp18-502-docker}. It allows the
 application to run in containers. Containers are similar to virtual machines
 but they do not require hypervisor as they run in host machine kernel. This
 makes containers light weight. Docker is developed as a client-server
-architecture\cite{hid-sp18-502-docker}. Docker client request docker daemon to
+architecture~\cite{hid-sp18-502-docker}. Docker client request docker daemon to
 build and run the
 containers. Figure~\ref{f:docker} describes the architecture of
 docker.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{image/docker-architecture.PNG}
-  \caption{Docker Architecture}\label{f:docker}
+  \caption{Docker Architecture~\cite{hid-sp18-502-docker}}\label{f:docker}
 \end{figure}
 
 Docker client is used by users to send command to docker daemon. Docker
@@ -194,8 +196,8 @@ Docker image can be considered as a blue print or set of instructions that is
 used to build a container\cite{hid-sp18-502-docker}. Docker containers are
 instance of docker image. Docker services are used to scale the application to
 multiple container working
-together in the swarm\cite{hid-sp18-502-docker}. In this project docker is used to create container with
-ubuntu image and run REST service on it.
+together in the swarm\cite{hid-sp18-502-docker}. In this project docker is used
+to create container with ubuntu image and run REST service on it.
 
 \section{Methodology}
 This project focuses on identifying objects related to azure for deploying an
@@ -445,137 +447,137 @@ Execution of rest api for all the paths:
 \item \textit{Get list of Resource groups}: Figure~\ref{fig:resource-list}
 shows command is used to fetch list of resource groups and results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/resource-list.PNG}
         \caption{Resource Group List}\label{fig:resource-list}
-\end{figure}
+\end{figure*}
 
 \item \textit{Get list of Virtual Machines}: Figure~\ref{fig:vm-list} shows
 command is used to fetch all the virtual machines present under and results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/vm-list.PNG}
         \caption{Virtual Machine List}\label{fig:vm-list}
-\end{figure}
+\end{figure*}
 
 \item \textit{Get Resource group by name}: Figure~\ref{fig:get-resource} shows
 command is used to get a resource id by name and results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/get-resource.PNG}
         \caption{Resource Group by Name}\label{fig:get-resource}
-\end{figure}
+\end{figure*}
 
 \item \textit{Get Virtual Machine by name}: Figure~\ref{fig:get-vm} shows
 command is used to get virtual machine by name and results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/get-vm.PNG}
         \caption{Virtual Machine by Name}\label{fig:get-vm}
-\end{figure}
+\end{figure*}
 
 \item \textit{Create new Resource Group}: Figure~\ref{fig:resource-create}
 shows command is used to create new resource group by name and results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/resource-create.PNG}
         \caption{Create Resource Group by Name}\label{fig:resource-create}
-\end{figure}
+\end{figure*}
 
 \item \textit{Create new public IP Address}: Figure~\ref{fig:ip-create} shows
 command is used to create public IP address in given resource group and
 results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/ip-create.PNG}
         \caption{Create IP Address by Name}\label{fig:ip-create}
-\end{figure}
+\end{figure*}
 
 \item \textit{Create new Virtual network}: Figure~\ref{fig:vnet-create} shows
 command is used to create new virtual network within given resource group and
 results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/vnet-create.PNG}
         \caption{Create Virtual Network by Name}\label{fig:vnet-create}
-\end{figure}
+\end{figure*}
 
 \item \textit{Create new Virtual sub-network}: Figure~\ref{fig:subnet-create}
 shows command is used to create new virtual sub-network within given virtual
 network and results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/subnet-create.PNG}
         \caption{Create Virtual Sub Network by Name}\label{fig:subnet-create}
-\end{figure}
+\end{figure*}
 
 \item \textit{Create new Network Interface Card}: Figure~\ref{fig:nic-create}
 shows command is used create new network interface card and results.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/nic-create.PNG}
         \caption{Create Network Interface Card by Name}\label{fig:nic-create}
-\end{figure}
+\end{figure*}
 
 \item \textit{Create new Virtual machine}: Figure~\ref{fig:vm-create} shows
 command is used to create virtual machine using vm\_size and image reference
 and results. Figure~\ref{fig:azure-vm-created} shows new virtual machine
 created on Azure portal.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/vm-create.PNG}
         \caption{Create Virtual Machine by Name}\label{fig:vm-create}
-\end{figure}
+\end{figure*}
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/azure-vm-created.PNG}
         \caption{Created Virtual Machine on Portal}\label{fig:azure-vm-created}
-\end{figure}
+\end{figure*}
 
 \item \textit{Start Virtual Machine}: Figure~\ref{fig:vm-start} shows command
 is used to start instance of a virtual machine and results.
 Figure~\ref{fig:azure-vm-running} shows Ubuntu virtual machine running on Azure
 portal.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/vm-start.PNG}
         \caption{Start Virtual Machine}\label{fig:vm-start}
-\end{figure}
+\end{figure*}
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/azure-vm-running.PNG}
         \caption{Running Virtual Machine on Portal}\label{fig:azure-vm-running}
-\end{figure}
+\end{figure*}
 
 \item \textit{Stop Virtual Machine}: Figure~\ref{fig:vm-stop} shows command
 is used to stop instance of a virtual machine and results.
 Figure~\ref{fig:azure-vm-stopped} shows Ubuntu virtual machine stopped on Azure
 portal.
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/vm-stop.PNG}
         \caption{Stop Virtual Machine}\label{fig:vm-stop}
-\end{figure}
+\end{figure*}
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
         \centering\includegraphics[width=\columnwidth]
         {image/azure-vm-stopped.PNG}
         \caption{Stopped Virtual Machine on Portal}\label{fig:azure-vm-stopped}
-\end{figure}
+\end{figure*}
 
 \end{itemize}
 
