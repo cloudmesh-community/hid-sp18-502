@@ -1,3 +1,14 @@
+## Reference Material Used: 
+Following links were used to find the commands to connect to azure and create virtual machines
+
+* https://docs.microsoft.com/en-us/azure/virtual-machines/windows/python
+
+* https://github.com/Azure-Samples/virtual-machines-python-manage/blob/master/example.py
+
+## Acknowledgement:
+
+* Thanks to Professor Laszewski, Gregor for guiding me in the right direction. Thanks to Pathan, Shagufta for giving me a starting point for the project.
+
 ## Prerequisites for Execution
 
 * git clone the repository.
